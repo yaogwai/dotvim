@@ -1,0 +1,43 @@
+[
+  {
+    "desc": "Mix project (Elixir)",
+    "ident": {
+      "file": "mix.exs"
+    },
+    "projections": {
+      "lib/**/*.ex": {
+        "type":      "src",
+        "alternate": "test/{}_test.exs",
+        "template": ["defmodule {camelcase|dot}", "end"]
+      },
+      "test/*_test.exs": {
+        "type":      "test",
+        "alternate": "lib/{}.ex"
+      }
+    }
+  },
+
+  {
+    "desc": "User files (relative to ~)",
+    "ident": {
+      "static": "~"
+    },
+    "projections": {
+      "Documents/writings/*": {
+        "type": "writings"
+      }
+    }
+  },
+
+  {
+    "desc": "Generic Git repository",
+    "ident": {
+      "file": ".git/"
+    },
+    "projections": {
+      "README.md": {
+        "type": "readme"
+      }
+    }
+  }
+]
