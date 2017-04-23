@@ -1,5 +1,3 @@
-" Switched to Windows
-
 set sw=2
 set expandtab
 set nojoinspaces
@@ -18,10 +16,10 @@ set noswapfile
 set fileformats=unix,dos
 " setting this fixes alt mappings on Windows
 set encoding=utf-8
-" set termguicolors
+set termguicolors
 " XXX only available in nvim
 " set inccommand=split
-let &grepprg = "pt /nocolor /nogroup"
+let &grepprg = "rg --vimgrep"
 
 
 call plug#begin(expand('<sfile>:h') . '/plugged')
@@ -57,10 +55,11 @@ Plug 'andyl/vim-textobj-elixir', { 'for': 'elixir' }
 Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
 Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 Plug 'mattn/emmet-vim'
+Plug 'rizzatti/dash.vim'
 call plug#end()
 
-let $http_proxy = 'http://localhost:1080'
-let $https_proxy = 'http://localhost:1080'
+let $http_proxy = 'http://localhost:4411'
+let $https_proxy = 'http://localhost:4411'
 let mapleader = ' '
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 let g:EasyMotion_smartcase = 1
@@ -91,7 +90,7 @@ fun! s:projectDir()
     let path = expand('%:h')
   endif
   " pain in the ass caused by Windows style path names
-  return split(path, '\v\\+$')[0]
+  " return split(path, '\v\\+$')[0]
 endfun
 
 let s:quickfix_is_open = 0
@@ -147,7 +146,6 @@ augroup Main
   au BufWritePre * call s:stripTrailingWhitespace()
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"zz" | endif
   au BufNewFile,BufRead *.m set filetype=objc
-  au FileType eelixir EmmetInstall
 augroup END
 
 augroup Filetypes
@@ -161,7 +159,8 @@ augroup Filetypes
         \ | nnoremap <buffer> <nowait> d <c-b>
         \ | nnoremap <buffer> j <c-e>
         \ | nnoremap <buffer> k <c-y>
-  au FileType autohotkey call setbufvar('%', "&makeprg", '"C:\Program Files\AutoHotkey\AutoHotkey.exe" %')
+  " au FileType autohotkey call setbufvar('%', "&makeprg", '"C:\Program Files\AutoHotkey\AutoHotkey.exe" %')
+  au FileType eelixir EmmetInstall
 augroup END
 
 augroup AutoInsert
@@ -172,8 +171,9 @@ augroup END
 nmap <leader>l <Plug>(easymotion-bd-jk)
 nmap <leader>f <Plug>(easymotion-bd-w)
 nmap <leader>w <Plug>(easymotion-bd-f)
+nmap <silent> <leader>d <Plug>DashSearch
 " writes when changed
-nnoremap <silent> <c-s> :update<cr>
+" nnoremap <silent> <c-s> :update<cr>
 
 inoremap <C-U> <C-G>u<C-U>
 inoremap <c-a> <esc>^i
@@ -193,10 +193,10 @@ cnoremap <c-b> <left>
 noremap! <m-b> <s-left>
 noremap! <m-f> <s-right>
 
-fun! s:dashWord()
-   silent! exe "!start cmd /c " . "start dash-plugin://query=" . expand('<cword>')
-endfun
-nnoremap <silent> <m-d> :call <SID>dashWord()<cr>
+" fun! s:dashWord()
+"    silent! exe "!start cmd /c " . "start dash-plugin://query=" . expand('<cword>')
+" endfun
+" nnoremap <silent> <m-d> :call <SID>dashWord()<cr>
 
 fun! s:ctrlp()
   call ctrlp#init(0, { 'dir': s:projectDir() })
@@ -204,11 +204,11 @@ endfun
 let g:ctrlp_map = '<nop>'
 let g:ctrlp_match_window = 'bottom,order:ttb,min:3,max:23'
 let g:ctrlp_use_caching = 0
-let g:ctrlp_user_command = 'pt /nocolor /nogroup /l /g "" %s'
+let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
 nnoremap <silent> <c-p> :call <SID>ctrlp()<cr>
-nnoremap <silent> <m-r> :CtrlPMRUFiles<cr>
-nnoremap <silent> <m-e> :CtrlPBuffer<cr>
-nnoremap <silent> <m-g> :Gstatus<cr>
+nnoremap <silent> <D-r> :CtrlPMRUFiles<cr>
+nnoremap <silent> <D-e> :CtrlPBuffer<cr>
+nnoremap <silent> <D-g> :Gstatus<cr>
 
 " Q now opens ex mode, is it ever useful?
 " q: still opens cmdline history window, which I suppose can sometimes be

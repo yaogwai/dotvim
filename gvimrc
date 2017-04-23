@@ -5,8 +5,8 @@ set guioptions-=L
 set guioptions-=T
 set guioptions-=m
 
-set columns=230
-set lines=59
+set columns=224
+set lines=64
 
 set linespace=0
-set guifont=FuraMonoForPowerline_NF:h10
+set guifont=Menlo\ Regular\ for\ Powerline\ Nerd\ Font\ Complete:h13
