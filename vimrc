@@ -16,11 +16,10 @@ set noswapfile
 set fileformats=unix,dos
 " setting this fixes alt mappings on Windows
 set encoding=utf-8
-set termguicolors
+" set termguicolors
 " XXX only available in nvim
 " set inccommand=split
-let &grepprg = "rg --vimgrep"
-
+set grepprg=rg\ --vimgrep
 
 call plug#begin(expand('<sfile>:h') . '/plugged')
 " disable for nvim
@@ -91,6 +90,7 @@ fun! s:projectDir()
   endif
   " pain in the ass caused by Windows style path names
   " return split(path, '\v\\+$')[0]
+  return path
 endfun
 
 let s:quickfix_is_open = 0
@@ -171,7 +171,7 @@ augroup END
 nmap <leader>l <Plug>(easymotion-bd-jk)
 nmap <leader>f <Plug>(easymotion-bd-w)
 nmap <leader>w <Plug>(easymotion-bd-f)
-nmap <silent> <leader>d <Plug>DashSearch
+nmap <silent> <d-d> <Plug>DashSearch
 " writes when changed
 " nnoremap <silent> <c-s> :update<cr>
 
@@ -180,7 +180,7 @@ inoremap <c-a> <esc>^i
 inoremap <c-e> <esc>A
 inoremap <c-k> <esc>lDa
 inoremap <c-l> <c-x><c-o>
-noremap! <c-v> <c-r>*
+" noremap! <c-v> <c-r>*
 
 " c-p/n differ from up/down in that they don't filter history
 cnoremap <c-p> <up>
