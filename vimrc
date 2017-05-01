@@ -112,6 +112,12 @@ augroup Quickfix
   au FileType qf nnoremap <buffer> <silent> q :cclose<cr>
 augroup END
 
+fun! s:grepProjectDir(query)
+  let dir = shellescape(<SID>projectDir())
+  silent execute "grep! " . a:query . " " . dir
+  copen 30
+endfun
+
 fun! s:grepOperator(type)
   let saved_reg = @@
   if a:type ==# 'v'
@@ -121,13 +127,19 @@ fun! s:grepOperator(type)
   else
     return
   endif
-  silent execute "grep! " . @@ . " " . shellescape(s:projectDir())
+  call <SID>grepProjectDir(@@)
   copen 30
   let @@ = saved_reg
 endfun
-nnoremap <silent> <leader>g :set operatorfunc=<SID>grepOperator<cr>g@
+
+" nnoremap <silent> <leader>g :set operatorfunc=<SID>grepOperator<cr>g@
+
+" using the input() function can make this more user-friendly
+command! -nargs=1 Rp :call <SID>grepProjectDir(<q-args>)
+
 vnoremap <silent> <leader>g :<c-u>call <SID>grepOperator(visualmode())<cr>
-nnoremap <silent> <leader>G :silent execute "grep! " . expand('<cword>') . " " . shellescape(<SID>projectDir())<bar>copen 30<cr>
+nnoremap <leader>g :Rp<space>
+nnoremap <silent> <leader>G :call <SID>grepProjectDir(expand('<cword>'))<cr>
 
 augroup ReloadRC
   au!
