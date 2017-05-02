@@ -211,16 +211,18 @@ noremap! <m-f> <s-right>
 " nnoremap <silent> <m-d> :call <SID>dashWord()<cr>
 
 fun! s:ctrlp()
+  update
   call ctrlp#init(0, { 'dir': s:projectDir() })
 endfun
+
 let g:ctrlp_map = '<nop>'
 let g:ctrlp_match_window = 'bottom,order:ttb,min:3,max:23'
 let g:ctrlp_use_caching = 0
 let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
 nnoremap <silent> <c-p> :call <SID>ctrlp()<cr>
-nnoremap <silent> <D-r> :CtrlPMRUFiles<cr>
-nnoremap <silent> <D-e> :CtrlPBuffer<cr>
-nnoremap <silent> <D-g> :Gstatus<cr>
+nnoremap <silent> <D-r> :update<cr>:CtrlPMRUFiles<cr>
+nnoremap <silent> <D-e> :update<cr>:CtrlPBuffer<cr>
+nnoremap <silent> <D-g> :update<cr>:Gstatus<cr>
 
 " Q now opens ex mode, is it ever useful?
 " q: still opens cmdline history window, which I suppose can sometimes be
