@@ -223,6 +223,7 @@ nnoremap <silent> <c-p> :call <SID>ctrlp()<cr>
 nnoremap <silent> <D-r> :update<cr>:CtrlPMRUFiles<cr>
 nnoremap <silent> <D-e> :update<cr>:CtrlPBuffer<cr>
 nnoremap <silent> <D-g> :update<cr>:Gstatus<cr>
+nnoremap <D-p> :ProjectDo<space>
 
 " Q now opens ex mode, is it ever useful?
 " q: still opens cmdline history window, which I suppose can sometimes be

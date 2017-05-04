@@ -27,9 +27,9 @@ hi link Operator Keyword
 hi link Identifier Normal
 hi link Define Keyword
 
-hi DiffAdd guibg=#A6E22E
-hi DiffChange guibg=#e6db74
-hi DiffDelete guibg=#f92672
+hi DiffAdd guibg=#0d3011
+hi DiffChange guibg=#3d3311
+hi DiffDelete guibg=#2d1011
 
 " ColorColumn " used for the columns set with 'colorcolumn'
 " Conceal " placeholder characters substituted for concealed
