@@ -29,8 +29,10 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'tommcdo/vim-fubitive'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'
 Plug 'sheerun/vim-polyglot'
@@ -78,6 +80,12 @@ nnoremap <silent> i :call <SID>insertIndent()<cr>
 fun! s:stripTrailingWhitespace()
   let l:winview = winsaveview()
   %s/\v\s+$//e
+  call winrestview(l:winview)
+endfun
+
+fun! s:jsxSubstituteClass()
+  let l:winview = winsaveview()
+  %s/\v class\=/ className=/e
   call winrestview(l:winview)
 endfun
 
@@ -173,11 +181,13 @@ augroup Filetypes
         \ | nnoremap <buffer> k <c-y>
   " au FileType autohotkey call setbufvar('%', "&makeprg", '"C:\Program Files\AutoHotkey\AutoHotkey.exe" %')
   au FileType eelixir EmmetInstall
+  au BufWritePre *.jsx call s:jsxSubstituteClass()
 augroup END
 
 augroup AutoInsert
   au!
   au BufNewFile *.php exe "normal! i<?php\<cr>\<cr>"
+  au BufNewFile *.jsx exe "normal! iimport React from 'react'\<cr>\<cr>"
 augroup END
 
 nmap <leader>l <Plug>(easymotion-bd-jk)
@@ -192,7 +202,7 @@ inoremap <c-a> <esc>^i
 inoremap <c-e> <esc>A
 inoremap <c-k> <esc>lDa
 inoremap <c-l> <c-x><c-o>
-" noremap! <c-v> <c-r>*
+noremap! <d-v> <c-r>*
 
 " c-p/n differ from up/down in that they don't filter history
 cnoremap <c-p> <up>
@@ -253,7 +263,10 @@ function! LightlineFugitive()
   return ''
 endfunction
 
+command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+
 iabbrev hte the
+iabbrev isnt isn't
 
 if has('win32')
 set renderoptions=type:directx

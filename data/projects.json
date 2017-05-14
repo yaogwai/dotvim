@@ -1,5 +1,17 @@
 [
   {
+    "desc": "Generic Git repository",
+    "ident": {
+      "file": ".git/"
+    },
+    "projections": {
+      "README.md": {
+        "type": "readme"
+      }
+    }
+  },
+
+  {
     "desc": "Mix project (Elixir)",
     "ident": {
       "file": "mix.exs"
@@ -30,14 +42,9 @@
   },
 
   {
-    "desc": "Generic Git repository",
+    "desc": "Nodejs project",
     "ident": {
-      "file": ".git/"
-    },
-    "projections": {
-      "README.md": {
-        "type": "readme"
-      }
+      "file": "package.json"
     }
   }
 ]

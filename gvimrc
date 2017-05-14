@@ -13,5 +13,6 @@ set guifont=Menlo\ Regular\ for\ Powerline\ Nerd\ Font\ Complete:h13
 
 if has('gui_macvim')
   macmenu Edit.Find.Find\ Next key=<nop>
+  macmenu Edit.Paste key=<nop>
   macmenu File.Print key=<nop>
 endif
