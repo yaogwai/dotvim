@@ -63,6 +63,7 @@ let $http_proxy = 'http://localhost:4411'
 let $https_proxy = 'http://localhost:4411'
 let mapleader = ' '
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
+let g:netrw_localrmdir='trash'
 let g:EasyMotion_smartcase = 1
 let g:SuperTabDefaultCompletionType = "context"
 
