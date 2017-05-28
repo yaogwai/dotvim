@@ -57,6 +57,7 @@ Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
 Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 Plug 'mattn/emmet-vim'
 Plug 'rizzatti/dash.vim'
+Plug 'janko-m/vim-test'
 call plug#end()
 
 let $http_proxy = 'http://localhost:4411'
@@ -81,12 +82,6 @@ nnoremap <silent> i :call <SID>insertIndent()<cr>
 fun! s:stripTrailingWhitespace()
   let l:winview = winsaveview()
   %s/\v\s+$//e
-  call winrestview(l:winview)
-endfun
-
-fun! s:jsxSubstituteClass()
-  let l:winview = winsaveview()
-  %s/\v class\=/ className=/e
   call winrestview(l:winview)
 endfun
 
@@ -182,13 +177,12 @@ augroup Filetypes
         \ | nnoremap <buffer> k <c-y>
   " au FileType autohotkey call setbufvar('%', "&makeprg", '"C:\Program Files\AutoHotkey\AutoHotkey.exe" %')
   au FileType eelixir EmmetInstall
-  au BufWritePre *.jsx call s:jsxSubstituteClass()
 augroup END
 
 augroup AutoInsert
   au!
   au BufNewFile *.php exe "normal! i<?php\<cr>\<cr>"
-  au BufNewFile *.jsx exe "normal! iimport React from 'react'\<cr>\<cr>"
+  au BufNewFile *.jsx exe "normal! iimport React from 'react'\<cr>\<cr>export default " . expand("%:t:r") . "\<esc>O"
 augroup END
 
 nmap <leader>l <Plug>(easymotion-bd-jk)
@@ -235,6 +229,12 @@ nnoremap <silent> <D-r> :update<cr>:CtrlPMRUFiles<cr>
 nnoremap <silent> <D-e> :update<cr>:CtrlPBuffer<cr>
 nnoremap <silent> <D-g> :update<cr>:Gstatus<cr>
 nnoremap <D-p> :ProjectDo<space>
+
+let g:user_emmet_settings = {
+      \ 'javascript.jsx' : {
+      \   'extends' : 'jsx'
+      \   }
+      \ }
 
 " Q now opens ex mode, is it ever useful?
 " q: still opens cmdline history window, which I suppose can sometimes be

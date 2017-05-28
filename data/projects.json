@@ -45,6 +45,11 @@
     "desc": "Nodejs project",
     "ident": {
       "file": "package.json"
+    },
+    "projections": {
+      "package.json": {
+        "type": "package"
+      }
     }
   }
 ]
