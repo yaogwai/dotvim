@@ -58,7 +58,12 @@ fun! s:detect()
   if !empty(getbufvar('%', 'projectionist'))
     return
   endif
-  let result = s:find(g:projectionist_file, s:root_projections)
+  if &ft ==# 'netrw'
+    let target = b:netrw_curdir
+  else
+    let target = g:projectionist_file
+  endif
+  let result = s:find(target, s:root_projections)
   if !empty(result)
     let [root, projections] = result
     call projectionist#append(root, projections)
