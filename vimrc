@@ -58,6 +58,7 @@ Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 Plug 'mattn/emmet-vim'
 Plug 'rizzatti/dash.vim'
 Plug 'janko-m/vim-test'
+Plug 'brooth/far.vim'
 call plug#end()
 
 let $http_proxy = 'http://localhost:4411'
@@ -177,6 +178,19 @@ augroup Filetypes
         \ | nnoremap <buffer> k <c-y>
   " au FileType autohotkey call setbufvar('%', "&makeprg", '"C:\Program Files\AutoHotkey\AutoHotkey.exe" %')
   au FileType eelixir EmmetInstall
+augroup END
+
+function s:MkNonExDir(file, buf)
+  if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
+    let dir=fnamemodify(a:file, ':h')
+    if !isdirectory(dir)
+      call mkdir(dir, 'p')
+    endif
+  endif
+endfunction
+augroup BWCCreateDir
+  autocmd!
+  autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 augroup END
 
 augroup AutoInsert
