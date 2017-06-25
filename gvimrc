@@ -5,7 +5,7 @@ set guioptions-=L
 set guioptions-=T
 set guioptions-=m
 
-set columns=224
+set columns=218
 set lines=64
 
 set linespace=0

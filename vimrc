@@ -32,6 +32,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
+Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tommcdo/vim-fubitive'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'
@@ -180,7 +181,7 @@ augroup Filetypes
   au FileType eelixir EmmetInstall
 augroup END
 
-function s:MkNonExDir(file, buf)
+function! s:MkNonExDir(file, buf)
   if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
     let dir=fnamemodify(a:file, ':h')
     if !isdirectory(dir)
@@ -188,6 +189,7 @@ function s:MkNonExDir(file, buf)
     endif
   endif
 endfunction
+
 augroup BWCCreateDir
   autocmd!
   autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
