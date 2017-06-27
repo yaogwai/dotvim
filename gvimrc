@@ -8,10 +8,8 @@ set guioptions-=m
 set columns=218
 set lines=64
 
-set linespace=0
-set guifont=Menlo\ Regular\ for\ Powerline\ Nerd\ Font\ Complete:h13
-
 if has('gui_macvim')
+  set guifont=Menlo\ Regular\ for\ Powerline\ Nerd\ Font\ Complete:h13
   macmenu Edit.Find.Find\ Next key=<nop>
   macmenu Edit.Paste key=<nop>
   macmenu File.Print key=<nop>

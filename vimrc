@@ -60,6 +60,7 @@ Plug 'mattn/emmet-vim'
 Plug 'rizzatti/dash.vim'
 Plug 'janko-m/vim-test'
 Plug 'brooth/far.vim'
+Plug 'roosta/srcery'
 call plug#end()
 
 let $http_proxy = 'http://localhost:4411'
@@ -290,4 +291,4 @@ set renderoptions=type:directx
   cd ~
 endif
 
-colorscheme seti
+colorscheme srcery
