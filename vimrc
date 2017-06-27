@@ -16,13 +16,14 @@ set noswapfile
 set fileformats=unix,dos
 " setting this fixes alt mappings on Windows
 set encoding=utf-8
-" set termguicolors
-" XXX only available in nvim
-" set inccommand=split
 set grepprg=rg\ --vimgrep
 
+if has('nvim')
+  set termguicolors
+  set inccommand=split
+endif
+
 call plug#begin(expand('<sfile>:h') . '/plugged')
-" disable for nvim
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -285,10 +286,5 @@ command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 
 iabbrev hte the
 iabbrev isnt isn't
-
-if has('win32')
-set renderoptions=type:directx
-  cd ~
-endif
 
 colorscheme srcery
