@@ -12,6 +12,18 @@
   },
 
   {
+    "desc": "Leiningen project",
+    "ident": {
+      "file": "project.clj"
+    },
+    "projections": {
+      "src/**/*.cljs?": {
+        "type": "src"
+      }
+    }
+  },
+
+  {
     "desc": "Mix project (Elixir)",
     "ident": {
       "file": "mix.exs"

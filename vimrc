@@ -19,7 +19,7 @@ set encoding=utf-8
 set grepprg=rg\ --vimgrep
 
 if has('nvim')
-  set termguicolors
+  " set termguicolors
   set inccommand=split
 endif
 
@@ -56,7 +56,8 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'andyl/vim-textobj-elixir', { 'for': 'elixir' }
 Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
-Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
+Plug 'guns/vim-sexp', { 'for': 'clojure' }
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'mattn/emmet-vim'
 Plug 'rizzatti/dash.vim'
 Plug 'janko-m/vim-test'
@@ -67,6 +68,7 @@ call plug#end()
 let $http_proxy = 'http://localhost:4411'
 let $https_proxy = 'http://localhost:4411'
 let mapleader = ' '
+let maplocalleader = ' '
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_localrmdir='trash'
 let g:EasyMotion_smartcase = 1
@@ -181,6 +183,7 @@ augroup Filetypes
         \ | nnoremap <buffer> k <c-y>
   " au FileType autohotkey call setbufvar('%', "&makeprg", '"C:\Program Files\AutoHotkey\AutoHotkey.exe" %')
   au FileType eelixir EmmetInstall
+  au FileType clojure let b:autopairs_loaded=1
 augroup END
 
 function! s:MkNonExDir(file, buf)
