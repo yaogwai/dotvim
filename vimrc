@@ -6,7 +6,7 @@ set noshowmode
 set hidden
 set splitbelow splitright
 set previewheight=30
-set ignorecase smartcase infercase
+set ignorecase smartcase " infercase
 set wildignorecase
 set gdefault
 set clipboard=unnamed
