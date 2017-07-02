@@ -35,6 +35,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tommcdo/vim-fubitive'
+Plug 'idanarye/vim-merginal'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'
 Plug 'sheerun/vim-polyglot'
@@ -206,9 +207,9 @@ augroup AutoInsert
   au BufNewFile *.jsx exe "normal! iimport React from 'react'\<cr>\<cr>export default " . expand("%:t:r") . "\<esc>O"
 augroup END
 
-nmap <leader>l <Plug>(easymotion-bd-jk)
-nmap <leader>f <Plug>(easymotion-bd-w)
-nmap <leader>w <Plug>(easymotion-bd-f)
+nmap <leader>j <Plug>(easymotion-bd-jk)
+nmap <leader>f <Plug>(easymotion-bd-f)
+" nmap <leader>w <Plug>(easymotion-bd-f)
 nmap <silent> <d-d> <Plug>DashSearch
 " writes when changed
 " nnoremap <silent> <c-s> :update<cr>
