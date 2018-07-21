@@ -57,8 +57,6 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'andyl/vim-textobj-elixir', { 'for': 'elixir' }
 Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
-Plug 'guns/vim-sexp', { 'for': 'clojure' }
-Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'mattn/emmet-vim'
 Plug 'rizzatti/dash.vim'
 Plug 'janko-m/vim-test'
@@ -66,8 +64,8 @@ Plug 'brooth/far.vim'
 Plug 'roosta/srcery'
 call plug#end()
 
-let $http_proxy = 'http://localhost:4411'
-let $https_proxy = 'http://localhost:4411'
+let $http_proxy = 'http://localhost:9090'
+let $https_proxy = 'http://localhost:9090'
 let mapleader = ' '
 let maplocalleader = ' '
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
